@@ -1,35 +1,54 @@
 <!-- ========================================
-     index.html – Startseite mit Logo und Navigation
+     index.html – Startseite mit Logo & Weiterleitung
 ======================================== -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Werkbyte – Startseite</title>
+  <title>Werkbyte – Weiterleitung</title>
+  <meta http-equiv="refresh" content="2; url=login.html" />
 
   <!-- Design-Styles -->
   <link rel="stylesheet" href="assets/css/style.css" />
 
   <!-- JS-Logik für Menüanzeige bei Mausbewegung -->
   <script defer src="assets/js/script.js"></script>
+
+  <style>
+    body {
+      text-align: center;
+      padding: 80px 20px;
+      background-color: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    #logo {
+      width: 200px;
+      margin-bottom: 30px;
+      animation: fadeInZoom 2s ease-in-out;
+    }
+    @keyframes fadeInZoom {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Logo mit Animation -->
-  <div id="logo-container">
-    <img src="assets/img/logo.png" alt="Werkbyte Logo" id="logo" />
-  </div>
+  <!-- Logo -->
+  <img src="assets/img/logo.png" alt="Werkbyte Logo" id="logo" />
 
-  <!-- Hauptmenü (wird beim Bewegen der Maus eingeblendet) -->
-  <nav id="main-menu" class="hidden">
-    <ul style="list-style: none; padding: 0; margin-top: 40px; text-align: center;">
-      <li style="margin: 10px 0;"><a href="login.html">🔐 Login</a></li>
-      <li style="margin: 10px 0;"><a href="register.html">📝 Registrieren</a></li>
-      <li style="margin: 10px 0;"><a href="impressum.html">📄 Impressum</a></li>
-      <li style="margin: 10px 0;"><a href="kontakt.html">📬 Kontakt</a></li>
-    </ul>
-  </nav>
+  <!-- Info-Text -->
+  <h1>🚀 Weiterleitung zu Werkbyte Login</h1>
+  <p>Du wirst automatisch weitergeleitet...</p>
+  <p>Falls nicht, <a href="login.html" style="color: #00bcd4;">klicke hier</a>.</p>
 
 </body>
 </html>
