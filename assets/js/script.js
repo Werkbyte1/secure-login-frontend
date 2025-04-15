@@ -2,25 +2,34 @@
 // script.js – Interaktive Funktionen für Sichtbarkeit & UI-Verhalten
 // ========================================
 
-// 💡 Menü-Effekt: Einmalige Mausbewegung aktiviert das Hauptmenü
-document.addEventListener("mousemove", () => {
-  const menu = document.getElementById("main-menu");
-  if (menu && !menu.classList.contains("visible")) {
-    menu.classList.add("visible");
-    menu.classList.remove("hidden");
-
-    // Optional: Menü nach 20 Sek. Inaktivität wieder ausblenden
-    setTimeout(() => {
-      menu.classList.add("hidden");
-      menu.classList.remove("visible");
-    }, 20000); // 20 Sekunden
-  }
-});
-
-// ========================================
-// 👁 Passwort-Sichtbarkeit umschalten
-// ========================================
 document.addEventListener("DOMContentLoaded", () => {
+  // ========================================
+  // 💡 Menü-Effekt: Mausbewegung aktiviert das Menü (nur einmal)
+  // ========================================
+  const menu = document.getElementById("main-menu");
+  let menuTimeout;
+  let menuShown = false;
+
+  if (menu) {
+    document.addEventListener("mousemove", () => {
+      if (!menuShown) {
+        menu.classList.remove("hidden");
+        menu.classList.add("visible");
+        menuShown = true;
+
+        // Nach 20 Sekunden wieder ausblenden (optional)
+        menuTimeout = setTimeout(() => {
+          menu.classList.remove("visible");
+          menu.classList.add("hidden");
+          menuShown = false;
+        }, 20000);
+      }
+    });
+  }
+
+  // ========================================
+  // 👁 Passwort-Sichtbarkeit umschalten
+  // ========================================
   const toggleButtons = document.querySelectorAll(".toggle-password");
 
   toggleButtons.forEach((btn) => {
