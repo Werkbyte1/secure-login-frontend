@@ -1,0 +1,126 @@
+<!-- ========================================
+     register.html – Registrierungsseite von Werkbyte
+     Enthält das Formular für neue Benutzer mit Validierung, Passwort-Hilfen
+     und Sicherheitshinweisen (z. B. Caps Lock, doppelte Einträge etc.)
+======================================== -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrieren – Werkbyte</title>
+
+  <!-- 💅 Styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- ⚙️ Scripts -->
+  <script defer src="assets/js/script.js"></script>               <!-- Globale Funktionen (z. B. Passwort anzeigen) -->
+  <script defer src="assets/js/validateRegister.js"></script>     <!-- Validierungslogik -->
+</head>
+<body>
+  <div style="max-width: 500px; margin: 40px auto; padding: 20px;">
+    <h1 style="text-align:center;">📝 Registrierung</h1>
+    <p class="hint" style="text-align:center;">Bitte fülle alle Felder korrekt aus.</p>
+
+    <!-- 🔐 Globale Caps-Lock-Warnung -->
+    <div id="global-caps-lock-warning" class="caps-warning error-message hidden"></div>
+
+    <!-- 🧾 Registrierungsformular -->
+    <form id="registerForm" novalidate>
+
+      <!-- 👤 Benutzername -->
+      <label for="username">Benutzername</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="z. B. Max_Mustermann"
+        autocomplete="username"
+        required
+      />
+      <div class="error-message" id="username-error"></div>
+
+      <!-- 📧 E-Mail -->
+      <label for="email">E-Mail</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="z. B. name@domain.de"
+        autocomplete="email"
+        required
+      />
+      <div class="error-message" id="email-error"></div>
+
+      <!-- 📱 Telefonnummer -->
+      <label for="phone">Telefonnummer</label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        placeholder="z. B. +49 176 1234567"
+        autocomplete="tel"
+        required
+      />
+      <div class="error-message" id="phone-error"></div>
+
+      <!-- 🔑 Passwort -->
+      <label for="password">Passwort</label>
+      <div class="password-wrapper">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Passwort"
+          autocomplete="new-password"
+          required
+        />
+        <button
+          type="button"
+          class="toggle-password"
+          data-target="password"
+          aria-label="Passwort anzeigen"
+          title="Passwort anzeigen"
+        >👁</button>
+      </div>
+      <div class="error-message" id="password-error"></div>
+
+      <!-- 📜 Passwortregeln -->
+      <div class="password-rules hidden" id="password-hint">
+        <strong>Passwortanforderungen:</strong>
+        <ul>
+          <li>Mindestens 8 Zeichen</li>
+          <li>1 Kleinbuchstabe</li>
+          <li>1 Großbuchstabe</li>
+          <li>1 Zahl</li>
+          <li>1 Sonderzeichen (z. B. !, @, #)</li>
+        </ul>
+      </div>
+
+      <!-- 🔁 Passwort wiederholen -->
+      <label for="confirmPassword">Passwort wiederholen</label>
+      <div class="password-wrapper">
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder="Passwort erneut eingeben"
+          autocomplete="new-password"
+          required
+        />
+        <button
+          type="button"
+          class="toggle-password"
+          data-target="confirmPassword"
+          aria-label="Passwort wiederholen anzeigen"
+          title="Passwort wiederholen anzeigen"
+        >👁</button>
+      </div>
+      <div class="error-message" id="confirmPassword-error"></div>
+
+      <!-- 📨 Absenden -->
+      <button type="submit" style="margin-top: 20px;">✅ Registrieren</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!-- ========================================
+     dashboard.html – Benutzer-Dashboard nach dem Login
+======================================== -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Werkbyte Dashboard</title>
+
+  <!-- 💅 Design & Layout -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- ⚙️ JavaScript-Logik -->
+  <script defer src="assets/js/script.js"></script>         <!-- Globale Effekte -->
+  <script defer src="assets/js/dashboard.js"></script>      <!-- Dashboard-Funktionalität -->
+</head>
+<body>
+
+  <!-- 🧩 Haupt-Container -->
+  <div id="dashboard-container" style="max-width: 600px; padding: 20px;">
+
+    <!-- 👋 Begrüßung -->
+    <h1 style="text-align: center;">👋 Willkommen im Dashboard</h1>
+    <p class="hint" style="text-align: center;">
+      Hier findest du eine Übersicht deiner Aktivitäten und Einstellungen.
+    </p>
+
+    <!-- 👤 Benutzerinformationen -->
+    <section id="user-info" style="margin-top: 40px;">
+      <h2>👤 Benutzerprofil</h2>
+      <ul style="list-style: none; padding: 0;">
+        <li><strong>🆔 Benutzername:</strong> <span id="info-username">–</span></li>
+        <li><strong>📧 E-Mail:</strong> <span id="info-email">–</span></li>
+        <li><strong>📱 Telefon:</strong> <span id="info-phone">–</span></li>
+        <li><strong>🛡️ Rolle:</strong> <span id="info-role">–</span></li>
+      </ul>
+    </section>
+
+    <!-- 🧭 Navigationsbereich -->
+    <section id="dashboard-nav" style="margin-top: 40px;">
+      <h2>🧭 Aktionen</h2>
+      <ul style="list-style: none; padding: 0;">
+        <!-- 🔧 Benutzeraktionen -->
+        <li style="margin-bottom: 10px;"><a href="#">⚙️ Einstellungen</a></li>
+        <li style="margin-bottom: 10px;"><a href="#">📁 Meine Projekte</a></li>
+        <li style="margin-bottom: 10px;"><a href="#">📤 Uploads</a></li>
+
+        <!-- 🛠️ Admin-Link (nur sichtbar für superadmins via dashboard.js) -->
+        <li id="admin-link" style="margin-bottom: 10px;" hidden>
+          <a href="admin.html">🛠️ Adminbereich</a>
+        </li>
+
+        <!-- 🚪 Logout -->
+        <li style="margin-top: 20px;">
+          <a href="#" id="logout-link">🚪 Logout</a>
+        </li>
+      </ul>
+    </section>
+
+  </div>
+
+</body>
+</html>

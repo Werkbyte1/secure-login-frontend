@@ -1,0 +1,35 @@
+<!-- ========================================
+     index.html – Startseite mit Logo und Navigation
+======================================== -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Werkbyte – Startseite</title>
+
+  <!-- Design-Styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- JS-Logik für Menüanzeige bei Mausbewegung -->
+  <script defer src="assets/js/script.js"></script>
+</head>
+<body>
+
+  <!-- Logo mit Animation -->
+  <div id="logo-container">
+    <img src="assets/img/logo.png" alt="Werkbyte Logo" id="logo" />
+  </div>
+
+  <!-- Hauptmenü (wird beim Bewegen der Maus eingeblendet) -->
+  <nav id="main-menu" class="hidden">
+    <ul style="list-style: none; padding: 0; margin-top: 40px; text-align: center;">
+      <li style="margin: 10px 0;"><a href="login.html">🔐 Login</a></li>
+      <li style="margin: 10px 0;"><a href="register.html">📝 Registrieren</a></li>
+      <li style="margin: 10px 0;"><a href="impressum.html">📄 Impressum</a></li>
+      <li style="margin: 10px 0;"><a href="kontakt.html">📬 Kontakt</a></li>
+    </ul>
+  </nav>
+
+</body>
+</html>

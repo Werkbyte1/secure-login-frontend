@@ -1,0 +1,84 @@
+<!-- ========================================
+     admin.html – Admin-Dashboard von Werkbyte
+     Version: 15.04.2025 – mit Testuser, Sperren, Export/Import
+======================================== -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin-Bereich – Werkbyte</title>
+
+  <!-- 💅 Styles & JavaScript -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script defer src="assets/js/script.js"></script>
+  <script defer src="assets/js/admin.js"></script>
+</head>
+<body>
+
+  <div id="admin-container" style="max-width: 900px; padding: 20px;">
+    <h1 style="text-align: center;">🛠️ Admin-Bereich</h1>
+    <p class="hint" style="text-align: center;">
+      Nur für <strong>Superadmins</strong> zugänglich – Änderungen wirken sich direkt aus.
+    </p>
+
+    <!-- 🔍 Filter für Benutzerliste -->
+    <section id="filter-controls" style="margin-top: 30px;">
+      <input
+        type="text"
+        id="filter-input"
+        placeholder="🔎 Suche nach Benutzername, E-Mail oder Telefonnummer..."
+        style="padding: 8px; width: 100%; border-radius: 6px; margin-bottom: 10px;"
+      />
+      <select
+        id="role-filter"
+        style="padding: 8px; width: 100%; border-radius: 6px; margin-bottom: 30px;"
+      >
+        <option value="">🔽 Rolle filtern (alle)</option>
+        <option value="user">user</option>
+        <option value="admin">admin</option>
+        <option value="superadmin">superadmin</option>
+      </select>
+    </section>
+
+    <!-- 👥 Benutzerliste -->
+    <section id="admin-users">
+      <h2>👥 Benutzerverwaltung</h2>
+      <div id="user-list">
+        <!-- Dynamisch per admin.js erzeugt -->
+      </div>
+    </section>
+
+    <!-- 🧪 Testnutzer anlegen -->
+    <section id="admin-create-testuser" style="margin-top: 40px;">
+      <h2>🧪 Testuser erzeugen</h2>
+      <button id="create-testuser-btn" class="btn primary">➕ Testuser hinzufügen</button>
+      <button id="delete-testusers-btn" class="btn danger">🗑 Alle Testuser löschen</button>
+      <p class="hint" style="margin-top: 10px;">
+        Diese User (User001–User999) sind nur für Testzwecke und <strong>nicht einloggbar</strong>.
+      </p>
+    </section>
+
+    <!-- 🔐 Sperren & JSON -->
+    <section id="tools" style="margin-top: 40px;">
+      <h2>📁 Verwaltungstools</h2>
+      <button id="export-users-btn" class="btn">📤 Benutzer exportieren (JSON)</button>
+      <input type="file" id="import-users-input" accept=".json" style="display: none;" />
+      <label for="import-users-input" class="btn">📥 Benutzer importieren (JSON)</label>
+    </section>
+
+    <!-- 🧭 Navigation -->
+    <section id="admin-options" style="margin-top: 40px;">
+      <h2>🧭 Navigation</h2>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 10px;">
+          <a href="dashboard.html">🔙 Zurück zum Dashboard</a>
+        </li>
+        <li>
+          <a href="#" id="logout-link">🚪 Logout</a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

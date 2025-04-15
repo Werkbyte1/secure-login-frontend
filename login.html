@@ -1,0 +1,64 @@
+<!-- ========================================
+     login.html – Login-Seite für bestehende Benutzer
+     Enthält Benutzername/E-Mail + Passwort-Felder mit Validierung
+======================================== -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+
+  <!-- Globale Styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- JavaScript-Funktionalität -->
+  <script defer src="assets/js/validateLogin.js"></script>
+  <script defer src="assets/js/script.js"></script>
+</head>
+<body>
+  <h1 style="text-align:center;">Login</h1>
+
+  <!-- 🔐 Warnung bei aktiver Feststelltaste -->
+  <div id="global-caps-lock-warning" class="error-message hidden"></div>
+
+  <form id="loginForm" novalidate>
+    <!-- Benutzername oder E-Mail -->
+    <input
+      type="text"
+      id="login-identifier"
+      name="login-identifier"
+      placeholder="Benutzername oder E-Mail"
+      autocomplete="username"
+      required
+    />
+    <div class="error-message" id="login-identifier-error"></div>
+
+    <!-- Passwort -->
+    <div class="password-wrapper">
+      <input
+        type="password"
+        id="login-password"
+        name="login-password"
+        placeholder="Passwort"
+        autocomplete="current-password"
+        required
+      />
+      <button
+        type="button"
+        class="toggle-password"
+        data-target="login-password"
+        aria-label="Passwort anzeigen"
+        title="Passwort anzeigen"
+      >👁</button>
+    </div>
+    <div class="error-message" id="login-password-error"></div>
+
+    <!-- Absenden -->
+    <button type="submit">Einloggen</button>
+
+    <!-- Passwort vergessen -->
+    <a href="passwort-vergessen.html" id="forgot-password">Passwort vergessen?</a>
+  </form>
+</body>
+</html>

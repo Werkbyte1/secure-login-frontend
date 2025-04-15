@@ -1,0 +1,274 @@
+/* ========================================
+   style.css – Globale Design-Einstellungen für Werkbyte
+   Version: 15.04.2025 – mit Dark-Mode, Admin-Layout, Formularen und Optimierungen
+======================================== */
+
+/* ========== Globales Grundlayout ========== */
+body {
+  margin: 0;
+  background-color: #121212;
+  color: white;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========== Logo-Bereich mit Animation ========== */
+#logo-container {
+  animation: fadeInZoom 2s ease-in-out;
+}
+#logo {
+  width: 200px;
+}
+@keyframes fadeInZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ========== Formularbereich ========== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 300px;
+  margin-top: 40px;
+}
+
+input {
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  font-size: 16px;
+  background-color: #1e1e1e;
+  color: white;
+  outline: none;
+  transition: border 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+input:focus {
+  background-color: #2c2c2c;
+  border: 1px solid #00bcd4;
+}
+
+/* 🔹 Verbesserte Barrierefreiheit */
+input:focus-visible {
+  outline: 2px solid #00bcd4;
+}
+
+/* Visuelle Rückmeldung */
+input.valid {
+  border: 1px solid #2ecc71 !important;
+}
+input.invalid {
+  border: 1px solid #e74c3c !important;
+}
+
+/* Platzhalter */
+input::placeholder {
+  color: #888;
+  font-size: 13px;
+}
+
+/* Fehleranzeige unter Feldern */
+.error-message {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: -6px;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.error-message span {
+  display: inline-block;
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+/* Hinweisboxen */
+.error {
+  background-color: #ff4444;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.hint {
+  background-color: #ff9800;
+  color: black;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Passwortregeln */
+.password-rules {
+  font-size: 13px;
+  color: #bbbbbb;
+  margin-top: -4px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.password-rules.hidden {
+  display: none;
+}
+
+/* Passwort mit 👁️-Button */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.password-wrapper input[type="password"],
+.password-wrapper input[type="text"] {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  background: #00bcd4;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 9px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+.toggle-password:hover {
+  background: #0097a7;
+}
+
+/* Button */
+button {
+  background-color: #00bcd4;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* ✅ Nur Submit-Buttons füllen ganze Breite */
+button[type="submit"] {
+  width: 100%;
+}
+
+button:hover:enabled {
+  background-color: #0097a7;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Passwort vergessen Link */
+#forgot-password {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #9c27b0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+#forgot-password:hover {
+  color: #e91e63;
+  text-decoration: underline;
+}
+
+/* ========== Admin-Bereich & Dashboard ========== */
+#admin-container,
+#dashboard-container {
+  max-width: 800px;
+  width: 100%;
+  padding: 40px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+
+  /* 🔁 Scrollbar aktivieren für große Listen */
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Benutzerboxen */
+.user-box {
+  background-color: #2c2c2c;
+  padding: 15px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+.user-box strong {
+  color: #00bcd4;
+}
+.user-box em {
+  color: #ccc;
+  font-style: normal;
+}
+.user-card {
+  list-style: none;
+}
+
+/* Tabellen im Adminbereich */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #1e1e1e;
+  color: white;
+}
+th, td {
+  border: 1px solid #333;
+  padding: 12px;
+  text-align: left;
+}
+th {
+  background-color: #2c2c2c;
+}
+
+/* 🔁 Optisch getrennte Zeilen */
+tbody tr:nth-child(even) {
+  background-color: #2a2a2a;
+}
+
+td button {
+  padding: 6px 12px;
+  background-color: #00bcd4;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+td button:hover {
+  background-color: #0097a7;
+}
+
+/* ========== Responsive ========== */
+@media screen and (max-width: 400px) {
+  body {
+    padding: 20px;
+  }
+  form {
+    width: 100%;
+  }
+  #admin-container,
+  #dashboard-container {
+    padding: 20px;
+  }
+}

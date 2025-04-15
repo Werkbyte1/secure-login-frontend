@@ -1,0 +1,26 @@
+{
+    "users": [
+      {
+        "username": "admin",
+        "email": "admin@werkbyte.de",
+        "phone": "+49 176 1234567",
+        "password": "AdminStart123!",
+        "role": "superadmin"
+      },
+      {
+        "username": "max_mustermann",
+        "email": "max@mustermann.de",
+        "phone": "+49 152 9876543",
+        "password": "Max!Mustermann2024",
+        "role": "user"
+      },
+      {
+        "username": "test_user",
+        "email": "test@example.com",
+        "phone": "+49 170 1112233",
+        "password": "Test1234!",
+        "role": "user"
+      }
+    ]
+  }
+  
