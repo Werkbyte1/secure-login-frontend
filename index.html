@@ -1,5 +1,5 @@
 <!-- ========================================
-     index.html – Startseite mit Logo & Weiterleitung
+     index.html – Startseite mit Logo & Weiterleitung + Menü
 ======================================== -->
 <!DOCTYPE html>
 <html lang="de">
@@ -14,7 +14,7 @@
   <!-- Design-Styles -->
   <link rel="stylesheet" href="assets/css/style.css" />
 
-  <!-- JS für Menüanzeige (optional) -->
+  <!-- Menüanzeige bei Mausbewegung -->
   <script defer src="assets/js/script.js"></script>
 
   <style>
@@ -25,11 +25,13 @@
       color: white;
       font-family: Arial, sans-serif;
     }
+
     #logo {
       width: 200px;
       margin-bottom: 30px;
       animation: fadeInZoom 2s ease-in-out;
     }
+
     @keyframes fadeInZoom {
       0% {
         opacity: 0;
@@ -40,12 +42,27 @@
         transform: scale(1);
       }
     }
+
     a {
       color: #00bcd4;
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
+    }
+
+    #main-menu {
+      margin-top: 50px;
+    }
+
+    #main-menu ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #main-menu li {
+      margin: 10px 0;
     }
   </style>
 </head>
@@ -58,6 +75,14 @@
   <h1>🚀 Weiterleitung zu Werkbyte Login</h1>
   <p>Du wirst automatisch weitergeleitet...</p>
   <p>Falls nicht, <a href="login.html">klicke hier</a>.</p>
+
+  <!-- Hauptmenü (optional) -->
+  <nav id="main-menu" class="hidden">
+    <ul>
+      <li><a href="login.html">🔐 Login</a></li>
+      <li><a href="registrieren.html">📝 Registrierung</a></li>
+    </ul>
+  </nav>
 
 </body>
 </html>
