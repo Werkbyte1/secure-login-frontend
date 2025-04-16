@@ -1,17 +1,14 @@
 <!-- ========================================
-     index.html – Werkbyte Startseite ohne Weiterleitung
+     index.html – Werkbyte Startseite (statisch)
 ======================================== -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Werkbyte – Willkommen</title>
+  <title>Werkbyte – Startseite</title>
 
-  <!-- Design-Styles -->
   <link rel="stylesheet" href="assets/css/style.css" />
-  <script defer src="assets/js/script.js"></script>
-
   <style>
     body {
       text-align: center;
@@ -20,11 +17,38 @@
       color: white;
       font-family: Arial, sans-serif;
     }
-
     #logo {
       width: 200px;
       margin-bottom: 30px;
       animation: fadeInZoom 2s ease-in-out;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    h1 span {
+      color: #00bcd4;
+    }
+    .button-container {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .button {
+      padding: 12px 20px;
+      background-color: #00bcd4;
+      color: black;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.2s ease-in-out;
+      text-decoration: none;
+    }
+    .button:hover {
+      background-color: #00a0b3;
     }
 
     @keyframes fadeInZoom {
@@ -37,30 +61,6 @@
         transform: scale(1);
       }
     }
-
-    .button {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 24px;
-      font-size: 16px;
-      font-weight: bold;
-      color: #fff;
-      background-color: #00bcd4;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
-
-    .button:hover {
-      background-color: #0097a7;
-    }
-
-    .subtext {
-      margin-top: 30px;
-      font-size: 14px;
-      color: #ccc;
-    }
   </style>
 </head>
 <body>
@@ -68,20 +68,13 @@
   <!-- Logo -->
   <img src="assets/img/logo.png" alt="Werkbyte Logo" id="logo" />
 
-  <!-- Begrüßung -->
-  <h1>Willkommen bei <span style="color:#00bcd4;">Werkbyte</span></h1>
-  <p>Dein Portal für DIY-Lösungen, Technik & Login-Systeme</p>
+  <!-- Titel -->
+  <h1>Willkommen bei <span>Werkbyte</span></h1>
 
   <!-- Buttons -->
-  <div>
+  <div class="button-container">
     <a href="login.html" class="button">🔐 Login</a>
     <a href="register.html" class="button">✍️ Registrierung</a>
-  </div>
-
-  <!-- Optionaler Hinweis -->
-  <div class="subtext">
-    Hinweis: Zugang nur mit Einladung oder gültigem Account. <br />
-    Support: <a href="mailto:info@werkbyte.de">info@werkbyte.de</a>
   </div>
 
 </body>
