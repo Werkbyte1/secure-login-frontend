@@ -1,20 +1,15 @@
 <!-- ========================================
-     index.html – Startseite mit Logo & Weiterleitung + Menü
+     index.html – Werkbyte Startseite ohne Weiterleitung
 ======================================== -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Werkbyte – Weiterleitung</title>
-
-  <!-- Automatische Weiterleitung nach 2 Sekunden -->
-  <meta http-equiv="refresh" content="2; url=login.html" />
+  <title>Werkbyte – Willkommen</title>
 
   <!-- Design-Styles -->
   <link rel="stylesheet" href="assets/css/style.css" />
-
-  <!-- Menüanzeige bei Mausbewegung -->
   <script defer src="assets/js/script.js"></script>
 
   <style>
@@ -43,26 +38,28 @@
       }
     }
 
-    a {
-      color: #00bcd4;
+    .button {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #00bcd4;
+      border: none;
+      border-radius: 8px;
       text-decoration: none;
+      transition: background-color 0.3s ease;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .button:hover {
+      background-color: #0097a7;
     }
 
-    #main-menu {
-      margin-top: 50px;
-    }
-
-    #main-menu ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    #main-menu li {
-      margin: 10px 0;
+    .subtext {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #ccc;
     }
   </style>
 </head>
@@ -71,18 +68,21 @@
   <!-- Logo -->
   <img src="assets/img/logo.png" alt="Werkbyte Logo" id="logo" />
 
-  <!-- Info-Text -->
-  <h1>🚀 Weiterleitung zu Werkbyte Login</h1>
-  <p>Du wirst automatisch weitergeleitet...</p>
-  <p>Falls nicht, <a href="login.html">klicke hier</a>.</p>
+  <!-- Begrüßung -->
+  <h1>Willkommen bei <span style="color:#00bcd4;">Werkbyte</span></h1>
+  <p>Dein Portal für DIY-Lösungen, Technik & Login-Systeme</p>
 
-  <!-- Hauptmenü (optional) -->
-  <nav id="main-menu" class="hidden">
-    <ul>
-      <li><a href="login.html">🔐 Login</a></li>
-      <li><a href="registrieren.html">📝 Registrierung</a></li>
-    </ul>
-  </nav>
+  <!-- Buttons -->
+  <div>
+    <a href="login.html" class="button">🔐 Login</a>
+    <a href="register.html" class="button">✍️ Registrierung</a>
+  </div>
+
+  <!-- Optionaler Hinweis -->
+  <div class="subtext">
+    Hinweis: Zugang nur mit Einladung oder gültigem Account. <br />
+    Support: <a href="mailto:info@werkbyte.de">info@werkbyte.de</a>
+  </div>
 
 </body>
 </html>
