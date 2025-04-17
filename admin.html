@@ -1,3 +1,7 @@
+<!-- ========================================
+     admin.html – Admin-Dashboard von Werkbyte
+     Version: 17.04.2025 – mit Sidebar-Navigation & Tools
+======================================== -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -5,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin-Bereich – Werkbyte</title>
 
-  <!-- 💅 Styles & Scripts -->
+  <!-- 💅 Styles & JavaScript -->
   <link rel="stylesheet" href="assets/css/style.css" />
   <script defer src="assets/js/script.js"></script>
   <script defer src="assets/js/admin.js"></script>
@@ -13,90 +17,119 @@
   <style>
     body {
       margin: 0;
-      display: flex;
-      height: 100vh;
       font-family: Arial, sans-serif;
       background-color: #121212;
       color: white;
+      display: flex;
     }
-    aside {
-      width: 220px;
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
       background-color: #1e1e1e;
+      height: 100vh;
       padding: 20px;
+      box-sizing: border-box;
+      position: fixed;
+      top: 0;
+      left: 0;
     }
-    aside h2 {
+
+    .sidebar h2 {
       color: #00bcd4;
       font-size: 1.2rem;
       margin-bottom: 20px;
     }
-    aside ul {
-      list-style: none;
-      padding: 0;
-    }
-    aside li {
-      margin: 10px 0;
-    }
-    aside a {
+
+    .sidebar a {
+      display: block;
       color: white;
       text-decoration: none;
+      margin: 12px 0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.2s;
     }
-    aside a:hover {
-      color: #00bcd4;
+
+    .sidebar a:hover {
+      background-color: #00bcd4;
+      color: black;
     }
-    main {
-      flex: 1;
+
+    /* Main Content */
+    .main {
+      margin-left: 270px;
       padding: 30px;
-      overflow-y: auto;
+      max-width: 900px;
+      width: 100%;
     }
+
     h1, h2 {
-      color: #00bcd4;
+      text-align: center;
     }
+
+    .hint {
+      text-align: center;
+      color: #bbb;
+      margin-top: -10px;
+      margin-bottom: 30px;
+    }
+
+    input, select, button {
+      font-size: 1rem;
+    }
+
     .btn {
       padding: 10px 16px;
-      border-radius: 6px;
+      border-radius: 8px;
       border: none;
       cursor: pointer;
       margin-right: 10px;
     }
+
     .btn.primary {
       background-color: #00bcd4;
       color: black;
+      font-weight: bold;
     }
+
     .btn.danger {
-      background-color: #ff4d4d;
+      background-color: #ff5252;
       color: white;
     }
-    .hint {
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-    input, select {
+
+    #filter-input, #role-filter {
       padding: 8px;
-      border-radius: 6px;
       width: 100%;
-      margin-bottom: 15px;
+      border-radius: 6px;
+      border: none;
+      margin-bottom: 16px;
     }
-    #user-list {
-      margin-top: 15px;
+
+    label.btn {
+      background-color: #4caf50;
+      color: white;
     }
   </style>
 </head>
 <body>
-  <aside>
-    <h2>🛠️ Werkbyte Admin</h2>
-    <ul>
-      <li><a href="dashboard.html">🏠 Dashboard</a></li>
-      <li><a href="#" id="logout-link">🚪 Logout</a></li>
-    </ul>
-  </aside>
 
-  <main>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>🛠️ Admin-Menü</h2>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="#" id="logout-link">🚪 Logout</a>
+  </div>
+
+  <!-- Hauptbereich -->
+  <div class="main">
     <h1>🛠️ Admin-Bereich</h1>
-    <p class="hint">Nur für <strong>Superadmins</strong> zugänglich – Änderungen wirken sich direkt aus.</p>
+    <p class="hint">Nur für <strong>Superadmins</strong> – Änderungen wirken sich direkt aus.</p>
 
-    <!-- 🔍 Filter für Benutzerliste -->
-    <section id="filter-controls" style="margin-top: 30px;">
-      <input type="text" id="filter-input" placeholder="🔎 Suche nach Benutzername, E-Mail oder Telefonnummer..." />
+    <!-- 🔍 Filter -->
+    <section>
+      <h2>🔍 Benutzer filtern</h2>
+      <input type="text" id="filter-input" placeholder="🔎 Suche nach Name, E-Mail oder Telefon..." />
       <select id="role-filter">
         <option value="">🔽 Rolle filtern (alle)</option>
         <option value="user">user</option>
@@ -109,25 +142,26 @@
     <section id="admin-users">
       <h2>👥 Benutzerverwaltung</h2>
       <div id="user-list">
-        <!-- Dynamisch per admin.js erzeugt -->
+        <!-- Wird dynamisch erzeugt -->
       </div>
     </section>
 
-    <!-- 🧪 Testnutzer anlegen -->
-    <section id="admin-create-testuser">
+    <!-- 🧪 Testuser -->
+    <section style="margin-top: 40px;">
       <h2>🧪 Testuser erzeugen</h2>
       <button id="create-testuser-btn" class="btn primary">➕ Testuser hinzufügen</button>
       <button id="delete-testusers-btn" class="btn danger">🗑 Alle Testuser löschen</button>
-      <p class="hint">Diese User (User001–User999) sind nur für Testzwecke und <strong>nicht einloggbar</strong>.</p>
+      <p class="hint">User001–User999 dienen Testzwecken und <strong>können sich nicht einloggen</strong>.</p>
     </section>
 
-    <!-- 🔐 Sperren & JSON -->
-    <section id="tools">
+    <!-- 📁 JSON Import/Export -->
+    <section style="margin-top: 40px;">
       <h2>📁 Verwaltungstools</h2>
       <button id="export-users-btn" class="btn">📤 Benutzer exportieren (JSON)</button>
       <input type="file" id="import-users-input" accept=".json" style="display: none;" />
       <label for="import-users-input" class="btn">📥 Benutzer importieren (JSON)</label>
     </section>
-  </main>
+  </div>
+
 </body>
 </html>
