@@ -17,24 +17,29 @@
       color: white;
       font-family: Arial, sans-serif;
     }
+
     #logo {
       width: 200px;
       margin-bottom: 30px;
       animation: fadeInZoom 2s ease-in-out;
     }
+
     h1 {
       font-size: 2rem;
       margin-bottom: 10px;
     }
+
     h1 span {
       color: #00bcd4;
     }
+
     .button-container {
       margin-top: 30px;
       display: flex;
       justify-content: center;
       gap: 20px;
     }
+
     .button {
       padding: 12px 20px;
       background-color: #00bcd4;
@@ -47,6 +52,7 @@
       transition: 0.2s ease-in-out;
       text-decoration: none;
     }
+
     .button:hover {
       background-color: #00a0b3;
     }
@@ -65,8 +71,8 @@
 </head>
 <body>
 
-  <!-- Logo -->
-  <img src="assets/img/Logo.png?v=1" alt="Werkbyte Logo" id="logo" />
+  <!-- Logo (neu & cache-sicher geladen) -->
+  <img id="logo" src="assets/img/werkbyte-logo.png?v=1" alt="Werkbyte Logo" />
 
   <!-- Titel -->
   <h1>Willkommen bei <span>Werkbyte</span></h1>
