@@ -1,5 +1,5 @@
 // ========================================
-// validateLogin.js – Firebase-Login für Werkbyte
+// validateLogin.js – Firebase-Login für Werkbyte mit Debugging
 // ========================================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
@@ -40,6 +40,8 @@ form?.addEventListener("submit", async (e) => {
   const email = emailInput.value.trim();
   const password = passwordInput.value;
 
+  console.log("🟡 Loginversuch für:", email);
+
   if (!email || !password) {
     showError("Bitte E-Mail und Passwort ausfüllen.");
     return;
@@ -49,14 +51,19 @@ form?.addEventListener("submit", async (e) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
+    console.log("🟢 Firebase Auth erfolgreich:", user.uid);
+
     // Firestore-Daten prüfen
     const userDoc = await getDoc(doc(db, "users", user.uid));
     if (!userDoc.exists()) {
       await signOut(auth);
+      console.warn("⚠️ Kein Firestore-Dokument gefunden für UID:", user.uid);
       return showError("❌ Benutzer nicht gefunden (Firestore).");
     }
 
     const userData = userDoc.data();
+    console.log("📄 Firestore-Daten:", userData);
+
     if (userData.locked) {
       await signOut(auth);
       return showError("🔒 Dieser Benutzer ist gesperrt.");
@@ -71,11 +78,11 @@ form?.addEventListener("submit", async (e) => {
       role: userData.role || "user"
     }));
 
-    // ➡️ Weiterleitung ins Dashboard
+    console.log("✅ Login erfolgreich, Weiterleitung zum Dashboard...");
     window.location.href = "dashboard.html";
 
   } catch (err) {
-    console.error(err);
+    console.error("❌ Login fehlgeschlagen:", err);
     showError("❌ Login fehlgeschlagen: " + (err.message || "Unbekannter Fehler"));
   }
 });
