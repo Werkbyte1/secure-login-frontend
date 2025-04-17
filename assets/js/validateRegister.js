@@ -1,80 +1,73 @@
 // ========================================
-// validateRegister.js – Firebase Registration für Werkbyte
+// validateRegister.js – Formularvalidierung & Firebase-Registrierung
 // ========================================
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { getFirestore, doc, setDoc, query, where, getDocs, collection } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-import { app } from "./firebase-config.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { firebaseConfig } from "./firebase-config.js";
 
+const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const form = document.getElementById("registerForm");
 
-// 🔁 Helper
-function setError(id, msg) {
-  const el = document.getElementById(id);
-  if (el) el.textContent = msg;
-}
-function clearErrors() {
-  ["username", "email", "phone", "password", "confirmPassword"].forEach(id => setError(`${id}-error`, ""));
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("registerForm");
 
-form?.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  clearErrors();
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const username = form.username.value.trim();
-  const email = form.email.value.trim();
-  const phone = form.phone.value.trim();
-  const password = form.password.value;
-  const confirmPassword = form.confirmPassword.value;
-  const hint = document.getElementById("password-hint");
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
-  // Validierung
-  let valid = true;
-  const passwordRules = [/.{8,}/, /[a-z]/, /[A-Z]/, /\d/, /[^a-zA-Z0-9]/];
-
-  if (!username) { setError("username-error", "Benutzername erforderlich"); valid = false; }
-  if (!email.includes("@")) { setError("email-error", "Ungültige E-Mail-Adresse"); valid = false; }
-  if (!phone.startsWith("+")) { setError("phone-error", "Telefonnummer muss mit + beginnen"); valid = false; }
-  if (password !== confirmPassword) { setError("confirmPassword-error", "Passwörter stimmen nicht überein"); valid = false; }
-  if (!passwordRules.every(rule => rule.test(password))) {
-    setError("password-error", "Passwort erfüllt nicht die Anforderungen");
-    hint?.classList.remove("hidden");
-    valid = false;
-  } else {
-    hint?.classList.add("hidden");
-  }
-  if (!valid) return;
-
-  try {
-    console.log("🔄 Registrierung wird gestartet...");
-
-    // Duplikatprüfung (optional)
-    const q = query(collection(db, "users"), where("email", "==", email));
-    const snap = await getDocs(q);
-    if (!snap.empty) {
-      setError("email-error", "E-Mail ist bereits registriert");
+    // Simple Prüfungen mit Ausgaben
+    if (!username || !email || !phone || !password || !confirmPassword) {
+      alert("❗ Bitte fülle alle Felder korrekt aus.");
       return;
     }
 
-    const cred = await createUserWithEmailAndPassword(auth, email, password);
-    const user = cred.user;
-    console.log("✅ Firebase Auth erfolgreich", user.uid);
+    if (password !== confirmPassword) {
+      alert("❗ Passwörter stimmen nicht überein.");
+      return;
+    }
 
-    await setDoc(doc(db, "users", user.uid), {
-      username,
-      email,
-      phone,
-      role: "user",
-      locked: false,
-      createdAt: new Date().toISOString()
-    });
+    if (!validatePassword(password)) {
+      alert("❗ Passwort erfüllt nicht die Anforderungen.");
+      return;
+    }
 
-    alert("✅ Registrierung erfolgreich");
-    window.location.href = "login.html";
-  } catch (err) {
-    console.error("❌ Fehler bei Registrierung:", err);
-    alert("❌ Fehler: " + (err.message || "Unbekannter Fehler"));
-  }
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      const user = cred.user;
+      console.log("✅ Benutzer erstellt:", user.uid);
+
+      // Daten in Firestore speichern
+      await setDoc(doc(db, "users", user.uid), {
+        username,
+        email,
+        phone,
+        role: "user",
+        createdAt: new Date().toISOString(),
+        locked: false
+      });
+
+      alert("✅ Registrierung erfolgreich!");
+      window.location.href = "login.html";
+    } catch (err) {
+      console.error("❌ Fehler bei Registrierung:", err);
+      alert("❌ Registrierung fehlgeschlagen: " + err.message);
+    }
+  });
 });
+
+function validatePassword(pw) {
+  const minLen = /.{8,}/;
+  const lower = /[a-z]/;
+  const upper = /[A-Z]/;
+  const digit = /[0-9]/;
+  const special = /[^A-Za-z0-9]/;
+  return minLen.test(pw) && lower.test(pw) && upper.test(pw) && digit.test(pw) && special.test(pw);
+}
